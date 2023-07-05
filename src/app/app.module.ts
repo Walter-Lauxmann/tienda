@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,16 +15,20 @@ import { PrincipalComponent } from './principal/principal.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { ListaProductosComponent } from './productos/lista-productos/lista-productos.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavegacionComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    ListaProductosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
