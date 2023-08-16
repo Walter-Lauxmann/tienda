@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavegacionComponent } from './navegacion/navegacion.component';
+import { FormsModule } from '@angular/forms';
+// Material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -15,7 +14,13 @@ import { PrincipalComponent } from './principal/principal.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+// Component
+import { AppComponent } from './app.component';
+import { NavegacionComponent } from './navegacion/navegacion.component';
 import { ListaProductosComponent } from './productos/lista-productos/lista-productos.component';
+import { DetalleProductosComponent } from './productos/detalle-productos/detalle-productos.component';
 
 
 @NgModule({
@@ -23,7 +28,8 @@ import { ListaProductosComponent } from './productos/lista-productos/lista-produ
     AppComponent,
     NavegacionComponent,
     PrincipalComponent,
-    ListaProductosComponent
+    ListaProductosComponent,
+    DetalleProductosComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,10 @@ import { ListaProductosComponent } from './productos/lista-productos/lista-produ
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
