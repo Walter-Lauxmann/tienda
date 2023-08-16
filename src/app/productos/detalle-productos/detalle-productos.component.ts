@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Producto } from 'src/app/interfaces/producto';
 import { ProductosService } from 'src/app/servicios/productos.service';
 
 @Component({
@@ -12,7 +13,11 @@ export class DetalleProductosComponent implements OnInit {
   items: any;
   producto: any;
 
-  constructor(private route: ActivatedRoute, private productoService: ProductosService) {}
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private productoService: ProductosService
+    ) {}
 
 
   ngOnInit(): void {
@@ -20,7 +25,7 @@ export class DetalleProductosComponent implements OnInit {
     if( this.id > 0 ) {
       this.obtenerProducto( this.id );
     } else {
-      this.producto = this.productoService.producto;
+      this.producto = this.productoService.producto;      
     }
   }
 
@@ -39,6 +44,7 @@ export class DetalleProductosComponent implements OnInit {
   guardarProducto(id: any): void {
     this.productoService.guardarProducto(id, this.producto);
     alert ('Producto guardado!');
+    this.router.navigateByUrl('/articulos');
   }
 
   eliminarProducto(id: any): void {
@@ -46,6 +52,7 @@ export class DetalleProductosComponent implements OnInit {
     if( respuesta ) {
       this.productoService.eliminarProducto(id);
       alert(`${this.producto.nombre} ha sido eliminado!`);
+      this.router.navigateByUrl('/articulos');
     }
   }
 } 

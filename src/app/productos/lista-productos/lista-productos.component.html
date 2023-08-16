@@ -1,5 +1,12 @@
 <section>
     <h2>Lista de equipos</h2>
+
+    <a [routerLink]="'detalle-producto/0'">
+        <button mat-fab color="primary">
+            <mat-icon>add</mat-icon> 
+        </button>
+    </a>
+
     <div class="row">
         <div class="col-md-3" *ngFor="let producto of productos">
             <mat-card>
@@ -13,7 +20,7 @@
                         </h2>
                     </mat-card-subtitle>
                 </mat-card-header>
-                <img mat-card-image src="http://localhost/api/modelos/img/productos/{{ producto.imagen }}" alt="{{ producto.nombre}}">
+                <img mat-card-image src="http://localhost/api/modelos/img/productos/{{ producto.imagen || 'nodisponible.png' }}" alt="{{ producto.nombre}}">
                 <mat-card-content>
                     <mat-icon aria-hidden="false">memory</mat-icon> | 
                     <mat-icon aria-hidden="false">sd_storage</mat-icon> | 
@@ -24,12 +31,8 @@
                 <mat-card-actions>
                     <a [routerLink]="['detalle-producto/', producto.id]">
                         <button mat-raised-button color="primary">
-                            <mat-icon>edit</mat-icon> Editar
-                        </button>
-                    </a>
-                    <a [routerLink]="['detalle-producto/', producto.id]">
-                        <button mat-raised-button color="warn">
-                            <mat-icon>delete</mat-icon> Eliminar
+                            <mat-icon>edit</mat-icon> 
+                            Editar
                         </button>
                     </a>
                 </mat-card-actions>
