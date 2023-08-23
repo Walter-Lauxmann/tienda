@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Producto } from 'src/app/interfaces/producto';
 import { ProductosService } from 'src/app/servicios/productos.service';
+import { SubirImagenService } from 'src/app/servicios/subir-imagen.service';
 
 @Component({
   selector: 'app-detalle-productos',
@@ -12,11 +13,16 @@ export class DetalleProductosComponent implements OnInit {
   id: any;
   items: any;
   producto: any;
+  myimg: string = '';
+  trueimg: Boolean = false;
+  loader: Boolean = false;
+  final: Boolean = true;
 
   constructor(
     private router: Router, 
     private route: ActivatedRoute, 
-    private productoService: ProductosService
+    private productoService: ProductosService,
+    private subir: SubirImagenService
     ) {}
 
 
@@ -34,6 +40,7 @@ export class DetalleProductosComponent implements OnInit {
       (res: any) => {
         this.items = res;
         this.producto = this.items[0];
+        this.myimg = this.producto.imagen;
         console.log(this.producto);
       },
       error =>{ 
@@ -55,6 +62,26 @@ export class DetalleProductosComponent implements OnInit {
       this.productoService.eliminarProducto(id);
       alert(`${this.producto.nombre} ha sido eliminado!`);
       this.router.navigateByUrl('/articulos');
+    }
+  }
+
+  subirImagen(ev: any) {
+    let img: any = ev.target;
+    if(img.files.length > 0) {
+      this.loader = true;
+      let form = new FormData();
+      form.append('imagen',img.files[0]);
+      this.subir.subirImagen(form)
+        .subscribe(
+          res => {
+            this.loader = false;
+            if(res.status) {
+              this.trueimg = true;
+              this.myimg = res.nombre;
+              this.producto.imagen = this.myimg;
+            }
+          }
+        )
     }
   }
 } 

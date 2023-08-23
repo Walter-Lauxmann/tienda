@@ -1,60 +1,146 @@
-<h1> {{ producto.nombre }} </h1>
+<h1>{{ producto.nombre }}</h1>
 <form>
-    <div class="row">
-        <div class="col-md-4">
-            <img src="http://localhost/api/modelos/img/productos/{{producto.imagen || 'nodisponible.png'}}" alt="{{producto.nombre}}">
+  <div class="row">
+    <div class="col-md-4">
+      <img 
+        src="http://localhost/api/modelos/img/productos/{{
+          myimg || 'nodisponible.png'
+        }}"
+        alt="{{ producto.nombre }}"
+      /><br />
+      <input
+        type="file"
+        name="imagen"
+        id="imagen"
+        (change)="subirImagen($event)"
+        accept="image/*"
+        *ngIf="!loader"
+      />
+      <div *ngIf="loader">
+        <div
+          style="
+            width: 100%;
+            height: 0;
+            padding-bottom: 100%;
+            position: relative;
+          "
+        >
+          <iframe
+            src="https://giphy.com/embed/xTkcEQACH24SMPxIQg"
+            width="100%"
+            height="100%"
+            style="position: absolute"
+            frameBorder="0"
+            class="giphy-embed"
+            allowFullScreen
+          ></iframe>
         </div>
-        <div class="col-md-8">
-            <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Código</mat-label>
-                        <input type="text" matInput placeholder="Código del producto" [(ngModel)]="producto.codigo" name="codigo">
-                    </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Nombre</mat-label>
-                        <input type="text" matInput placeholder="Nombre del producto" [(ngModel)]="producto.nombre" name="nombre">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Precio</mat-label>
-                        <input type="number" matInput placeholder="0" [(ngModel)]="producto.precio" name="precio" style="text-align: right;">
-                        <span matPrefix>$&nbsp;</span>
-                        <span matSufix>.00</span>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Stock</mat-label>
-                        <input type="number" matInput placeholder="0" [(ngModel)]="producto.stock" name="stock" style="text-align: right;">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <mat-form-field appearance="fill" style="width: 100%;">
-                        <mat-label>Descripción</mat-label>
-                        <textarea matInput [(ngModel)]="producto.descripcion" name="descripcion">
-                            {{ producto.descripcion }}
-                        </textarea>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div>
-                <button mat-raised-button color="primary" (click)="guardarProducto(producto.id)">
-                    <mat-icon>done</mat-icon>
-                    Guardar
-                </button>
-                <button *ngIf="producto.id > 0" mat-raised-button color="warn" (click)="eliminarProducto(producto.id)">
-                    <mat-icon>delete</mat-icon>
-                    Eliminar
-                </button>
-            </div>
-        </div>
+        <p>
+          <a href="https://giphy.com/gifs/hand-bored-waiting-xTkcEQACH24SMPxIQg"
+            >via GIPHY</a
+          >
+        </p>
+      </div>
+      <div class="img" *ngIf="trueimg">
+        <img 
+        src="http://localhost/api/modelos/img/productos/{{
+          myimg || 'nodisponible.png'
+        }}"
+        alt="{{ producto.nombre }}"
+      />
+      </div>
     </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Código</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Código del producto"
+              [(ngModel)]="producto.codigo"
+              name="codigo"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Nombre del producto"
+              [(ngModel)]="producto.nombre"
+              name="nombre"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Precio</mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="0"
+              [(ngModel)]="producto.precio"
+              name="precio"
+              style="text-align: right"
+            />
+            <span matPrefix>$&nbsp;</span>
+            <span matSufix>.00</span>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Stock</mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="0"
+              [(ngModel)]="producto.stock"
+              name="stock"
+              style="text-align: right"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field appearance="fill" style="width: 100%">
+            <mat-label>Descripción</mat-label>
+            <textarea
+              matInput
+              [(ngModel)]="producto.descripcion"
+              name="descripcion"
+            >
+                            {{ producto.descripcion }}
+                        </textarea
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="guardarProducto(producto.id)"
+        >
+          <mat-icon>done</mat-icon>
+          Guardar
+        </button>
+        <button
+          *ngIf="producto.id > 0"
+          mat-raised-button
+          color="warn"
+          (click)="eliminarProducto(producto.id)"
+        >
+          <mat-icon>delete</mat-icon>
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
 </form>
