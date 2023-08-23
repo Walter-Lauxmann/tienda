@@ -1,11 +1,12 @@
 <section>
     <h2>Lista de equipos</h2>
-
-    <a [routerLink]="'detalle-producto/0'">
-        <button mat-fab color="primary">
-            <mat-icon>add</mat-icon> 
-        </button>
-    </a>
+    <div class="boton-flotante">
+        <a [routerLink]="'detalle-producto/0'">
+            <button mat-fab color="primary">
+                <mat-icon>add</mat-icon> 
+            </button>
+        </a>
+    </div>
 
     <div class="row">
         <div class="col-md-3" *ngFor="let producto of productos">
@@ -39,4 +40,5 @@
             </mat-card>
         </div>
     </div>
+
 </section>

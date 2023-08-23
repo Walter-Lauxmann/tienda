@@ -22,11 +22,10 @@ export class DetalleProductosComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
+    this.producto = this.productoService.producto;
     if( this.id > 0 ) {
       this.obtenerProducto( this.id );
-    } else {
-      this.producto = this.productoService.producto;      
-    }
+    } 
   }
 
   obtenerProducto(id: any): void {
@@ -37,7 +36,10 @@ export class DetalleProductosComponent implements OnInit {
         this.producto = this.items[0];
         console.log(this.producto);
       },
-      error =>{ console.log(error); }
+      error =>{ 
+        this.producto = this.productoService.producto;
+        console.log(error); 
+      }
     );
   }
 
