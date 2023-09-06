@@ -51,6 +51,9 @@ export class DetalleProductosComponent implements OnInit {
   }
 
   guardarProducto(id: any): void {
+    if(this.myimg != '') {
+      this.producto.imagen = this.myimg;
+    }
     this.productoService.guardarProducto(id, this.producto);
     alert ('Producto guardado!');
     this.router.navigateByUrl('/articulos');
@@ -67,7 +70,9 @@ export class DetalleProductosComponent implements OnInit {
 
   subirImagen(ev: any) {
     let img: any = ev.target;
+    
     if(img.files.length > 0) {
+      //this.myimg = img.files[0].name;
       this.loader = true;
       let form = new FormData();
       form.append('imagen',img.files[0]);
@@ -75,13 +80,12 @@ export class DetalleProductosComponent implements OnInit {
         .subscribe(
           res => {
             this.loader = false;
-            if(res.status) {
+            if(res.status) {              
               this.trueimg = true;
-              this.myimg = res.nombre;
-              this.producto.imagen = this.myimg;
             }
           }
-        )
+        );
+        this.myimg = img.files[0].name;
     }
   }
 } 
