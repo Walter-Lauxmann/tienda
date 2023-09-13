@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Iniciar sesión</h1>
+  <form>
+    <mat-form-field appearance="fill">
+      <mat-label>Usuario</mat-label>
+      <input
+        matInput
+        type="text"
+        #usuario
+        name="usuario"
+        placeholder="Usuario"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input
+        matInput
+        type="password"
+        #password
+        name="password"
+        placeholder="Contraseña"
+      />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="login(usuario.value, password.value)"
+      id="login-button"
+    >
+      Iniciar sessión
+    </button>
+  </form>
+</div>

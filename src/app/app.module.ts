@@ -24,6 +24,7 @@ import { PrincipalComponent } from './principal/principal.component';
 import { NavegacionComponent } from './navegacion/navegacion.component';
 import { ListaProductosComponent } from './productos/lista-productos/lista-productos.component';
 import { DetalleProductosComponent } from './productos/detalle-productos/detalle-productos.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { DetalleProductosComponent } from './productos/detalle-productos/detalle
     NavegacionComponent,
     PrincipalComponent,
     ListaProductosComponent,
-    DetalleProductosComponent
+    DetalleProductosComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
