@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  url = 'http://localhost/api/modelos/login.php';
+  url = 'http://localhost/api/modelos1/login.php';
 
   constructor(private http: HttpClient) { }
 

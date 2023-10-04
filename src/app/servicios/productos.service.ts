@@ -18,7 +18,7 @@ export class ProductosService {
     imagen: ''
   }
 
-  url = 'http://localhost/api/modelos/datos.php?tabla=articulos';
+  url = 'http://localhost/api/modelos1/datos.php?tabla=articulos';
 
   constructor(private http: HttpClient) { }
 

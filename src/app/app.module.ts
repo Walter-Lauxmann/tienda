@@ -25,6 +25,9 @@ import { NavegacionComponent } from './navegacion/navegacion.component';
 import { ListaProductosComponent } from './productos/lista-productos/lista-productos.component';
 import { DetalleProductosComponent } from './productos/detalle-productos/detalle-productos.component';
 import { LoginComponent } from './login/login.component';
+import { LoginService } from './servicios/login.service';
+import { UsuariosService } from './servicios/usuarios.service';
+import { UsuarioActivoGuard } from './guards/usuario-activo.guard';
 
 
 @NgModule({
@@ -53,7 +56,11 @@ import { LoginComponent } from './login/login.component';
     MatInputModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    LoginService,
+    UsuariosService,
+    UsuarioActivoGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
